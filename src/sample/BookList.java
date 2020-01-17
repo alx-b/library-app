@@ -13,5 +13,4 @@ public class BookList {
     public void removeBook(Book book){
         this.books.remove(book);
     }
-
 }
