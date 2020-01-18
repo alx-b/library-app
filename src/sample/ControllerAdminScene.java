@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 public class ControllerAdminScene {
     @FXML private ListView<Book> libraryListView;
+    @FXML private ListView<User> userListView;
     private App app;
 
     public ControllerAdminScene(App app) {
@@ -21,6 +22,14 @@ public class ControllerAdminScene {
         this.libraryListView.getItems().clear();
         for (Book book : this.app.getLibraryBooks().getBooks()){
             this.libraryListView.getItems().add(book);
+        }
+    }
+
+    @FXML
+    protected void displayUsers(){
+        this.userListView.getItems().clear();
+        for (User user : this.app.getUserList().getUsers()){
+            this.userListView.getItems().add(user);
         }
     }
 

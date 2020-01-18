@@ -8,6 +8,9 @@ public class App {
     public App(){
         adminList.addAdmin(new Admin("admin", "1234", "Barry"));
         libraryBooks.addBook(new Book("title1", "author1", "A great book"));
+        userList.addUser(new User("somebody", "123", "Barry"));
+        userList.addUser(new User("someone", "123", "Margaret"));
+        userList.addUser(new User("bob", "123", "Roger"));
     }
 
     public BookList getLibraryBooks() {

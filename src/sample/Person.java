@@ -19,4 +19,11 @@ public abstract class Person {
     public String getPassword(){
         return this.password;
     }
+
+    @Override
+    public String toString() {
+        return "Username: " + username +
+               "\nPassword: " + password +
+               "\nName: " + name + "\n";
+    }
 }

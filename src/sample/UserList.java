@@ -6,6 +6,10 @@ import java.util.List;
 public class UserList {
     private List<User> users = new ArrayList<User>();
 
+    public List<User> getUsers(){
+        return this.users;
+    }
+
     public void addUser(User user){
         this.users.add(user);
     }
@@ -26,5 +30,10 @@ public class UserList {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return users + "\n";
     }
 }
