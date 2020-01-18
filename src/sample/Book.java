@@ -20,11 +20,16 @@ public class Book {
         this.isAvailable = true;
     }
 
+    public String displayFullInfo(){
+        return "Title: " + title +
+               "\nAuthor: " + author +
+               "\nDescription: " + description +
+               "\nIs Available: " + isAvailable + "\n";
+    }
+
     @Override
     public String toString() {
         return "Title: " + title +
-               "Author: " + author +
-               "Description: " + description +
-               "Is Available: " + isAvailable + "\n";
+               "\nAuthor: " + author + "\n";
     }
 }

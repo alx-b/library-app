@@ -18,19 +18,19 @@ public class ControllerAccountCreationScene {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private TextField nameField;
-    @FXML private TextField personNumberField;
+    //@FXML private TextField personNumberField;
     private App app;
 
     public ControllerAccountCreationScene(App app) {
         this.app = app;
     }
-
+    // DO NOT FORGET TO CHECK BOTH ADMINLIST AND USERLIST IF A USERNAME EXIST!!!!!
     @FXML
     public void createAndAddAccount(){
         System.out.println("createAndAddAccount");
         this.app.getUserList().addUser(
                 new User(usernameField.getText(), passwordField.getText(),
-                nameField.getText(), personNumberField.getText())
+                nameField.getText())
         );
     }
 

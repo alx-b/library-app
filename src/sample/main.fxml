@@ -30,6 +30,7 @@
           spacing="20"
     >
         <Button text="Log in"
+                onAction="#logIn"
         />
         <Button text="New account"
                 onAction="#launchCreateAccountScene"

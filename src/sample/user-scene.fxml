@@ -33,14 +33,4 @@
                GridPane.columnIndex="1"
                GridPane.rowIndex="2"
     />
-    <Button text="Cancel"
-            GridPane.columnIndex="0"
-            GridPane.rowIndex="4"
-            onAction="#launchMainScene"
-    />
-    <Button text="Confirm"
-            GridPane.columnIndex="1"
-            GridPane.rowIndex="4"
-            onAction="#createAndAddAccount"
-    />
 </GridPane>

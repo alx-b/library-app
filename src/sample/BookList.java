@@ -6,11 +6,20 @@ import java.util.List;
 public class BookList {
     private List<Book> books = new ArrayList<Book>();
 
+    public List<Book> getBooks(){
+        return this.books;
+    }
+
     public void addBook(Book book){
         this.books.add(book);
     }
 
     public void removeBook(Book book){
         this.books.remove(book);
+    }
+
+    @Override
+    public String toString() {
+        return books + "\n";
     }
 }
