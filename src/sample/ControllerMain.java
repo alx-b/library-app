@@ -74,8 +74,10 @@ public class ControllerMain {
     public void logIn(ActionEvent actionEvent) throws IOException {
         System.out.println("ControllerMain, logIn");
         if (usernameExistInUserList()){
-            String userPassword = this.app.getUserList().getUserWithUsername(usernameField.getText()).getPassword();
+            User currentUser = this.app.getUserList().getUserWithUsername(usernameField.getText());
+            String userPassword = currentUser.getPassword();
             if (userPassword.equals(passwordField.getText())){
+                this.app.setCurrentUser(currentUser);
                 launchUserScene(actionEvent);
             } else{
                 //PASSWORD DOESNT MATCH

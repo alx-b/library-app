@@ -18,6 +18,10 @@ public class BookList {
         this.books.remove(book);
     }
 
+    public int getIndexOf(Book book){
+        return this.books.indexOf(book);
+    }
+
     @Override
     public String toString() {
         return books + "\n";

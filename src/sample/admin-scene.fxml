@@ -24,7 +24,49 @@
                 />
                 <Button text="Display Library Books"
                         GridPane.columnIndex="1"
+                        GridPane.rowIndex="0"
                         onAction="#displayBooks"
+                />
+                <Button text="Remove Book"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="1"
+                        onAction="#removeSelectedBook"
+                />
+            </GridPane>
+        </Tab>
+        <Tab fx:id="addBookToLibrary"
+             text="Add book to library"
+             closable="false"
+        >
+            <GridPane alignment="CENTER">
+                <Label text="Title"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"
+                />
+                <Label text="Author"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="1"
+                />
+                <Label text="Description"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="2"
+                />
+                <TextField fx:id="titleField"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"
+                />
+                <TextField fx:id="authorField"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"
+                />
+                <TextField fx:id="descriptionField"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"
+                />
+                <Button text="Add Book"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="4"
+                        onAction="#addNewBook"
                 />
             </GridPane>
         </Tab>

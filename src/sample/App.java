@@ -4,6 +4,8 @@ public class App {
     private BookList libraryBooks = new BookList();
     private UserList userList = new UserList();
     private AdminList adminList = new AdminList();
+    private User currentUser;
+    private Admin currentAdmin;
 
     public App(){
         adminList.addAdmin(new Admin("admin", "1234", "Barry"));
@@ -21,4 +23,15 @@ public class App {
         return this.userList;
     }
     public AdminList getAdminList(){ return this.adminList; }
+
+    public User getCurrentUser(){
+        return this.currentUser;
+    }
+    public void setCurrentUser(User currentUser){
+        this.currentUser = currentUser;
+    }
+
+    public void addBookToUserLoanedBookList(Book book){
+        this.currentUser.loanBook(book);
+    }
 }

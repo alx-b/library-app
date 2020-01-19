@@ -7,6 +7,10 @@ public class User extends Person {
         super(username, password, name);
     }
 
+    public BookList getloanedBooks(){
+        return this.loanedBooks;
+    }
+
     public void loanBook(Book book){
         book.markAsUnavailable();
         this.loanedBooks.addBook(book);
