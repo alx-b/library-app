@@ -22,21 +22,11 @@ public class App {
         adminList.addAdmin(new Admin("admin", "1234", "Barry"));
     }
 
-    public BookList getLibraryBooks() {
-        return this.libraryBooks;
-    }
-
-    public UserList getUserList(){
-        return this.userList;
-    }
+    public BookList getLibraryBooks(){ return this.libraryBooks; }
+    public UserList getUserList(){ return this.userList; }
     public AdminList getAdminList(){ return this.adminList; }
-
-    public User getCurrentUser(){
-        return this.currentUser;
-    }
-    public void setCurrentUser(User currentUser){
-        this.currentUser = currentUser;
-    }
+    public User getCurrentUser(){ return this.currentUser; }
+    public void setCurrentUser(User currentUser){ this.currentUser = currentUser; }
 
     public void addBookToUserLoanedBookList(Book book){
         this.currentUser.loanBook(book);
@@ -56,5 +46,17 @@ public class App {
 
     public List<User> searchUserByName(String name){
         return this.userList.searchUserByName(name);
+    }
+
+    public boolean usernameIsUnique(String username){
+        return (!userListContainsUserWithUsername(username) && !adminListContainsUserWithUsername(username));
+    }
+
+    public boolean userListContainsUserWithUsername(String username){
+        return this.userList.listContainsUserWithUsername(username);
+    }
+
+    public boolean adminListContainsUserWithUsername(String username){
+        return this.adminList.listContainsAdminWithUsername(username);
     }
 }

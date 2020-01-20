@@ -8,17 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class LoginSceneController {
-    @FXML
-    private TextField usernameField;
-    @FXML
-    private PasswordField passwordField;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private Text infoText;
     private App app;
 
     public LoginSceneController(App app) {
@@ -26,8 +24,8 @@ public class LoginSceneController {
     }
 
     @FXML
-    public void launchCreateAccountScene(ActionEvent actionEvent) throws IOException {
-        System.out.println("ControllerMain, launchCreateAccountScene");
+    protected void launchCreateAccountScene(ActionEvent actionEvent) throws IOException {
+        System.out.println("LoginSceneController: launchCreateAccountScene");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/account-creation-scene.fxml"));
         loader.setController(new AccountCreationSceneController(this.app));
         Parent view = loader.load();
@@ -37,17 +35,22 @@ public class LoginSceneController {
         window.show();
     }
 
-    public boolean usernameExistInUserList(){
+    private boolean usernameExistInUserList(){
         return this.app.getUserList().listContainsUserWithUsername(usernameField.getText());
     }
 
-    public boolean usernameExistInAdminList(){
+    private boolean usernameExistInAdminList(){
         return this.app.getAdminList().listContainsAdminWithUsername(usernameField.getText());
     }
 
+    private boolean fieldsAreEmpty(){
+        return (this.usernameField.getText().equals("") ||
+                this.passwordField.getText().equals(""));
+    }
+
     @FXML
-    private void launchUserScene(ActionEvent actionEvent) throws IOException {
-        System.out.println("ControllerMain, launchUserScene");
+    protected void launchUserScene(ActionEvent actionEvent) throws IOException {
+        System.out.println("LoginSceneController: launchUserScene");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/user-scene.fxml"));
         loader.setController(new UserSceneController(this.app));
         Parent view = loader.load();
@@ -58,8 +61,8 @@ public class LoginSceneController {
     }
 
     @FXML
-    private void launchAdminScene(ActionEvent actionEvent) throws IOException {
-        System.out.println("ControllerMain, launchAdminScene");
+    protected void launchAdminScene(ActionEvent actionEvent) throws IOException {
+        System.out.println("LoginSceneController: launchAdminScene");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/admin-scene.fxml"));
         loader.setController(new AdminSceneController(this.app));
         Parent view = loader.load();
@@ -70,7 +73,7 @@ public class LoginSceneController {
     }
 
     @FXML
-    public void logIn(ActionEvent actionEvent) throws IOException {
+    protected void logIn(ActionEvent actionEvent) throws IOException {
         System.out.println("ControllerMain, logIn");
         if (usernameExistInUserList()){
             User currentUser = this.app.getUserList().getUserWithUsername(usernameField.getText());
@@ -79,27 +82,26 @@ public class LoginSceneController {
                 this.app.setCurrentUser(currentUser);
                 launchUserScene(actionEvent);
             } else{
-                //PASSWORD DOESNT MATCH
-                System.out.println("PASS DOESNT MATCH");
+                infoText.setText("* Password doesn't match.");
             }
         } else if (usernameExistInAdminList()){
             String adminPassword = this.app.getAdminList().getAdminWithUsername(usernameField.getText()).getPassword();
             if (adminPassword.equals(passwordField.getText())){
                 launchAdminScene(actionEvent);
             } else{
-                //PASSWORD DOESNT MATCH
-                System.out.println("PASS DOESNT MATCH");
+                infoText.setText("* Password doesn't match.");
             }
         }
 
         else{
-            //USERNAME DOESNT EXIST
-            System.out.println("USERNAME DOESNT EXIST");
+            infoText.setText("* Username doesn't exist.");
         }
     }
-
+/*
     @FXML
     public void initialize(URL url, ResourceBundle rb){
         System.out.println("hello");
     }
+
+*/
 }

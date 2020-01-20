@@ -106,10 +106,10 @@ public class UserSceneController {
         displayLoanedBooks();
         displayBooks();
     }
-
+/*
     @FXML
     public void initialize(URL url, ResourceBundle rb){
         System.out.println("hello");
     }
-
+*/
 }

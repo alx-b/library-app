@@ -90,10 +90,10 @@ public class AdminSceneController {
         List<Book> books = new ArrayList<>(user.getloanedBooks().getBooks());
         this.bookListText.setText(books.toString());
     }
-
+/*
     @FXML
     public void initialize(URL url, ResourceBundle rb){
         System.out.println("hello");
     }
-
+*/
 }
