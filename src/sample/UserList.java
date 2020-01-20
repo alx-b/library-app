@@ -25,11 +25,21 @@ public class UserList {
 
     public User getUserWithUsername(String username){
         for (User user : this.users){
-            if (user.getUsername().equals(username)){
+            if (user.getUsername().toLowerCase().equals(username.toLowerCase())){
                 return user;
             }
         }
         return null;
+    }
+
+    public List<User> searchUserByName(String name){
+        List<User> userByName = new ArrayList<>();
+        for (User user : this.users){
+            if (user.getName().toLowerCase().equals(name.toLowerCase())){
+                userByName.add(user);
+            }
+        }
+        return userByName;
     }
 
     @Override

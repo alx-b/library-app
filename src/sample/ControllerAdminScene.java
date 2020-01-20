@@ -6,6 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ControllerAdminScene {
@@ -14,6 +15,7 @@ public class ControllerAdminScene {
     @FXML private TextField titleField;
     @FXML private TextField authorField;
     @FXML private TextField descriptionField;
+    @FXML private TextField byNameField;
 
     private App app;
 
@@ -36,6 +38,16 @@ public class ControllerAdminScene {
     }
 
     @FXML
+    protected void displayLoanedBooks(){
+        this.libraryListView.getItems().clear();
+        for (Book book : this.app.getLibraryBooks().getBooks()){
+            if (!book.isAvailable()){
+                this.libraryListView.getItems().add(book);
+            }
+        }
+    }
+
+    @FXML
     protected void addNewBook(){
         this.app.getLibraryBooks().addBook(new Book(this.titleField.getText(), this.authorField.getText(), this.descriptionField.getText()));
         displayBooks();
@@ -53,6 +65,16 @@ public class ControllerAdminScene {
         for (User user : this.app.getUserList().getUsers()){
             this.userListView.getItems().add(user);
         }
+    }
+
+    @FXML
+    protected void searchUserByName(){
+        List<User> users = this.app.searchUserByName(this.byNameField.getText());
+        this.userListView.getItems().clear();
+        for (User user : users){
+            this.userListView.getItems().add(user);
+        }
+
     }
 
     @FXML

@@ -36,6 +36,14 @@
                     <Button text="Read more about selected book"
                             onAction="#readMoreAboutSelectedBook"
                     />
+                    <Label text="Search by Title"/>
+                    <TextField fx:id="byTitleField"/>
+                    <Button text="Search by title"
+                            onAction="#searchBookByTitle"/>
+                    <Label text="Search by Author"/>
+                    <TextField fx:id="byAuthorField"/>
+                    <Button text="Search by author"
+                            onAction="#searchBookByAuthor"/>
                 </VBox>
             </GridPane>
         </Tab>
@@ -56,6 +64,8 @@
                     <Button text="Read more about selected book"
                             onAction="#readMoreAboutSelectedLoanedBook"
                     />
+                    <Button text="Return selected book"
+                            onAction="#returnSelectedBook"/>
                 </VBox>
             </GridPane>
         </Tab>

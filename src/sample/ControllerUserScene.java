@@ -13,11 +13,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ControllerUserScene {
     @FXML private ListView<Book> libraryListView;
     @FXML private ListView<Book> loanedBookListView;
+    @FXML private TextField byTitleField;
+    @FXML private TextField byAuthorField;
+
     private App app;
 
     public ControllerUserScene(App app) {
@@ -43,6 +48,26 @@ public class ControllerUserScene {
     }
 
     @FXML
+    protected void searchBookByTitle(){
+        List<Book> books = this.app.searchBookByTitle(this.byTitleField.getText());
+        this.libraryListView.getItems().clear();
+        for (Book book : books){
+            this.libraryListView.getItems().add(book);
+        }
+    }
+
+
+    @FXML
+    protected void searchBookByAuthor(){
+        List<Book> books = this.app.searchBookByAuthor(this.byAuthorField.getText());
+        this.libraryListView.getItems().clear();
+        for (Book book : books){
+            this.libraryListView.getItems().add(book);
+        }
+    }
+
+
+    @FXML
     protected void displayLoanedBooks(){
         this.loanedBookListView.getItems().clear();
         for (Book book : this.app.getCurrentUser().getloanedBooks().getBooks()){
@@ -63,9 +88,18 @@ public class ControllerUserScene {
         System.out.println(book.displayFullInfo());
     }
 
+    public void returnSelectedBook(){
+        System.out.println("return book");
+        this.app.removeBookFromUserLoanedBookList(getSelectedLoanedBook());
+        displayLoanedBooks();
+        displayBooks();
+    }
+
     @FXML void loanSelectedBook(){
         System.out.println("Loan book");
         this.app.addBookToUserLoanedBookList(getSelectedBook());
+        displayLoanedBooks();
+        displayBooks();
     }
 
     @FXML

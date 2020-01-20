@@ -22,6 +22,26 @@ public class BookList {
         return this.books.indexOf(book);
     }
 
+    public List<Book> searchBookByTitle(String title){
+        List<Book> booksByTitle = new ArrayList<>();
+        for (Book book : this.books){
+            if (book.getTitle().toLowerCase().equals(title.toLowerCase())){
+                booksByTitle.add(book);
+            }
+        }
+        return booksByTitle;
+    }
+
+    public List<Book> searchBookByAuthor(String author){
+        List<Book> booksByAuthor = new ArrayList<>();
+        for (Book book : this.books){
+            if (book.getAuthor().toLowerCase().equals(author.toLowerCase())){
+                booksByAuthor.add(book);
+            }
+        }
+        return booksByAuthor;
+    }
+
     @Override
     public String toString() {
         return books + "\n";

@@ -12,6 +12,18 @@ public class Book {
         this.description = description;
     }
 
+    public String getTitle(){
+        return this.title;
+    }
+
+    public String getAuthor(){
+        return this.author;
+    }
+
+    public boolean isAvailable(){
+        return isAvailable;
+    }
+
     public void markAsUnavailable(){
         this.isAvailable = false;
     }
