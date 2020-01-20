@@ -18,6 +18,8 @@ public class App {
         userList.addUser(new User("somebody", "123", "Barry"));
         userList.addUser(new User("someone", "123", "Margaret"));
         userList.addUser(new User("bob", "123", "Roger"));
+        userList.getUsers().get(1).loanBook(libraryBooks.getBooks().get(2));
+        userList.getUsers().get(1).loanBook(libraryBooks.getBooks().get(1));
     }
 
     public BookList getLibraryBooks() {

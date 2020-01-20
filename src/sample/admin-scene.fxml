@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 <GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <TabPane GridPane.hgrow="ALWAYS"
              GridPane.vgrow="ALWAYS"
@@ -80,24 +81,22 @@
                 <ListView fx:id="userListView"
                           GridPane.columnIndex="0"
                 />
-                <Button text="Display Customers"
-                        GridPane.columnIndex="1"
-                        GridPane.rowIndex="0"
-                        onAction="#displayUsers"
-                />
-                <Label text="Search by name"
-                       GridPane.columnIndex="1"
-                       GridPane.rowIndex="1"
-                />
-                <TextField fx:id="byNameField"
-                       GridPane.columnIndex="1"
-                       GridPane.rowIndex="2"
-                />
-                <Button text="Search by name"
-                        GridPane.columnIndex="1"
-                        GridPane.rowIndex="3"
-                        onAction="#searchUserByName"
-                />
+                <VBox GridPane.columnIndex="1">
+                    <Button text="Display Customers"
+                            onAction="#displayUsers"
+                    />
+                    <Label text="Search by name"
+                    />
+                    <TextField fx:id="byNameField"
+                    />
+                    <Button text="Search by name"
+                            onAction="#searchUserByName"
+                    />
+                    <Button text="See Selected User Loaned Books"
+                            onAction="#displaySelectedUserLoanBookList"/>
+                    <Text fx:id="bookListText"
+                          text=""/>
+                </VBox>
             </GridPane>
         </Tab>
     </TabPane>

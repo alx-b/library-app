@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -16,6 +18,7 @@ public class ControllerAdminScene {
     @FXML private TextField authorField;
     @FXML private TextField descriptionField;
     @FXML private TextField byNameField;
+    @FXML private Text bookListText;
 
     private App app;
 
@@ -75,6 +78,14 @@ public class ControllerAdminScene {
             this.userListView.getItems().add(user);
         }
 
+    }
+
+    @FXML
+    protected void displaySelectedUserLoanBookList(){
+        this.bookListText.setText("");
+        User user = this.userListView.getSelectionModel().getSelectedItem();
+        List<Book> books = new ArrayList<>(user.getloanedBooks().getBooks());
+        this.bookListText.setText(books.toString());
     }
 
     @FXML
