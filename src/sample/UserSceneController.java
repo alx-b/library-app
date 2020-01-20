@@ -11,13 +11,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ControllerUserScene {
+public class UserSceneController {
     @FXML private ListView<Book> libraryListView;
     @FXML private ListView<Book> loanedBookListView;
     @FXML private TextField byTitleField;
@@ -25,7 +26,7 @@ public class ControllerUserScene {
 
     private App app;
 
-    public ControllerUserScene(App app) {
+    public UserSceneController(App app) {
         this.app = app;
     }
 
@@ -91,6 +92,8 @@ public class ControllerUserScene {
     public void returnSelectedBook(){
         System.out.println("return book");
         this.app.removeBookFromUserLoanedBookList(getSelectedLoanedBook());
+        FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
+        FileUtility.saveObject("user_list.ser", this.app.getUserList());
         displayLoanedBooks();
         displayBooks();
     }
@@ -98,6 +101,8 @@ public class ControllerUserScene {
     @FXML void loanSelectedBook(){
         System.out.println("Loan book");
         this.app.addBookToUserLoanedBookList(getSelectedBook());
+        FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
+        FileUtility.saveObject("user_list.ser", this.app.getUserList());
         displayLoanedBooks();
         displayBooks();
     }

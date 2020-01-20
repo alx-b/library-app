@@ -1,9 +1,10 @@
 package sample;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserList {
+public class UserList implements Serializable {
     private List<User> users = new ArrayList<User>();
 
     public List<User> getUsers(){

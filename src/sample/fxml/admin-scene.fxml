@@ -12,6 +12,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextArea?>
 <GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <TabPane GridPane.hgrow="ALWAYS"
              GridPane.vgrow="ALWAYS"
@@ -62,13 +63,16 @@
                            GridPane.columnIndex="1"
                            GridPane.rowIndex="1"
                 />
-                <TextField fx:id="descriptionField"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="2"
+                <TextArea fx:id="descriptionArea"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"
+                          GridPane.columnSpan="1"
+                          GridPane.rowSpan="6"
+                          prefColumnCount="1"
                 />
                 <Button text="Add Book"
                         GridPane.columnIndex="1"
-                        GridPane.rowIndex="4"
+                        GridPane.rowIndex="10"
                         onAction="#addNewBook"
                 />
             </GridPane>

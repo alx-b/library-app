@@ -10,27 +10,26 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerMain {
+public class LoginSceneController {
     @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
     private App app;
 
-    public ControllerMain(App app) {
+    public LoginSceneController(App app) {
         this.app = app;
     }
 
     @FXML
     public void launchCreateAccountScene(ActionEvent actionEvent) throws IOException {
         System.out.println("ControllerMain, launchCreateAccountScene");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("account-creation-scene.fxml"));
-        loader.setController(new ControllerAccountCreationScene(this.app));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/account-creation-scene.fxml"));
+        loader.setController(new AccountCreationSceneController(this.app));
         Parent view = loader.load();
         Scene scene = new Scene(view, 800, 450);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -49,8 +48,8 @@ public class ControllerMain {
     @FXML
     private void launchUserScene(ActionEvent actionEvent) throws IOException {
         System.out.println("ControllerMain, launchUserScene");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("user-scene.fxml"));
-        loader.setController(new ControllerUserScene(this.app));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/user-scene.fxml"));
+        loader.setController(new UserSceneController(this.app));
         Parent view = loader.load();
         Scene scene = new Scene(view, 800, 450);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -61,8 +60,8 @@ public class ControllerMain {
     @FXML
     private void launchAdminScene(ActionEvent actionEvent) throws IOException {
         System.out.println("ControllerMain, launchAdminScene");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("admin-scene.fxml"));
-        loader.setController(new ControllerAdminScene(this.app));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/admin-scene.fxml"));
+        loader.setController(new AdminSceneController(this.app));
         Parent view = loader.load();
         Scene scene = new Scene(view, 800, 450);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

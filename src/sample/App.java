@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.File;
 import java.util.List;
 
 public class App {
@@ -10,16 +11,15 @@ public class App {
     private Admin currentAdmin;
 
     public App(){
+        if (new File("library_book.ser").isFile()){
+            System.out.println("loading library_book");
+            this.libraryBooks = (BookList) FileUtility.loadObject("library_book.ser");
+        }
+        if (new File("user_list.ser").isFile()){
+            System.out.println("loading user_list");
+            this.userList = (UserList) FileUtility.loadObject("user_list.ser");
+        }
         adminList.addAdmin(new Admin("admin", "1234", "Barry"));
-        libraryBooks.addBook(new Book("title1", "author1", "A great book"));
-        libraryBooks.addBook(new Book("title2", "allo", "A great book2"));
-        libraryBooks.addBook(new Book("clay", "author3", "A great book3"));
-        libraryBooks.getBooks().get(1).markAsUnavailable();
-        userList.addUser(new User("somebody", "123", "Barry"));
-        userList.addUser(new User("someone", "123", "Margaret"));
-        userList.addUser(new User("bob", "123", "Roger"));
-        userList.getUsers().get(1).loanBook(libraryBooks.getBooks().get(2));
-        userList.getUsers().get(1).loanBook(libraryBooks.getBooks().get(1));
     }
 
     public BookList getLibraryBooks() {

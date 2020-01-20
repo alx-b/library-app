@@ -3,6 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -11,18 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ControllerAdminScene {
+public class AdminSceneController {
     @FXML private ListView<Book> libraryListView;
     @FXML private ListView<User> userListView;
     @FXML private TextField titleField;
     @FXML private TextField authorField;
-    @FXML private TextField descriptionField;
+    @FXML private TextArea descriptionArea;
     @FXML private TextField byNameField;
     @FXML private Text bookListText;
 
     private App app;
 
-    public ControllerAdminScene(App app) {
+    public AdminSceneController(App app) {
         this.app = app;
     }
 
@@ -52,13 +53,15 @@ public class ControllerAdminScene {
 
     @FXML
     protected void addNewBook(){
-        this.app.getLibraryBooks().addBook(new Book(this.titleField.getText(), this.authorField.getText(), this.descriptionField.getText()));
+        this.app.getLibraryBooks().addBook(new Book(this.titleField.getText(), this.authorField.getText(), this.descriptionArea.getText()));
+        FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
         displayBooks();
     }
 
     @FXML
     protected void removeSelectedBook(){
         this.app.getLibraryBooks().removeBook(getSelectedBook());
+        FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
         displayBooks();
     }
 

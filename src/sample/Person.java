@@ -1,6 +1,8 @@
 package sample;
 
-public abstract class Person {
+import java.io.Serializable;
+
+public abstract class Person implements Serializable {
     private String username;
     private String password;
     private String name;

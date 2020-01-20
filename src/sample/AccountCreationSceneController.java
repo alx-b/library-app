@@ -14,14 +14,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerAccountCreationScene {
+public class AccountCreationSceneController {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private TextField nameField;
     //@FXML private TextField personNumberField;
     private App app;
 
-    public ControllerAccountCreationScene(App app) {
+    public AccountCreationSceneController(App app) {
         this.app = app;
     }
     // DO NOT FORGET TO CHECK BOTH ADMINLIST AND USERLIST IF A USERNAME EXIST!!!!!
@@ -32,13 +32,14 @@ public class ControllerAccountCreationScene {
                 new User(usernameField.getText(), passwordField.getText(),
                 nameField.getText())
         );
+        FileUtility.saveObject("user_list.ser", this.app.getUserList());
     }
 
     @FXML
     public void launchMainScene(ActionEvent actionEvent) throws IOException {
         System.out.println("AccountScene, launchMainScene");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-        loader.setController(new ControllerMain(this.app));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login-scene.fxml"));
+        loader.setController(new LoginSceneController(this.app));
         Parent view = loader.load();
         Scene scene = new Scene(view, 800, 450);
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
