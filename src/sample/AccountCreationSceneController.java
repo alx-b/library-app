@@ -28,9 +28,9 @@ public class AccountCreationSceneController {
     // DO NOT FORGET TO CHECK BOTH ADMINLIST AND USERLIST IF A USERNAME EXIST!!!!!
 
     private boolean fieldsAreEmpty(){
-        return (this.usernameField.getText().equals("") ||
-                this.passwordField.getText().equals("") ||
-                this.nameField.getText().equals(""));
+        return (this.usernameField.getText().isBlank() ||
+                this.passwordField.getText().isBlank() ||
+                this.nameField.getText().isBlank());
     }
 
     @FXML

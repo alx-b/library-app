@@ -27,6 +27,17 @@ public class AdminSceneController {
         this.app = app;
     }
 
+    private boolean fieldsAreEmpty(){
+        return (titleField.getText().isBlank() ||
+                authorField.getText().isBlank() ||
+                descriptionArea.getText().isBlank());
+    }
+
+    private void clearFields(){
+        this.titleField.clear();
+        this.authorField.clear();
+        this.descriptionArea.clear();
+    }
 
     @FXML
     private Book getSelectedBook(){
@@ -53,16 +64,25 @@ public class AdminSceneController {
 
     @FXML
     protected void addNewBook(){
-        this.app.getLibraryBooks().addBook(new Book(this.titleField.getText(), this.authorField.getText(), this.descriptionArea.getText()));
-        FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
-        displayBooks();
+        if (fieldsAreEmpty()){
+            System.out.println("Fields are empty/blank.");
+        } else {
+            this.app.getLibraryBooks().addBook(new Book(this.titleField.getText(), this.authorField.getText(), this.descriptionArea.getText()));
+            clearFields();
+            FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
+            displayBooks();
+        }
     }
 
     @FXML
     protected void removeSelectedBook(){
-        this.app.getLibraryBooks().removeBook(getSelectedBook());
-        FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
-        displayBooks();
+        if (this.libraryListView.getSelectionModel().isEmpty()){
+            System.out.println("Select a book to remove.");
+        } else {
+            this.app.getLibraryBooks().removeBook(getSelectedBook());
+            FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
+            displayBooks();
+        }
     }
 
     @FXML
@@ -89,9 +109,17 @@ public class AdminSceneController {
     @FXML
     protected void displaySelectedUserLoanBookList(){
         this.bookListText.setText("");
-        User user = this.userListView.getSelectionModel().getSelectedItem();
-        List<Book> books = new ArrayList<>(user.getloanedBooks().getBooks());
-        this.bookListText.setText(books.toString());
+        if (this.userListView.getSelectionModel().isEmpty()){
+            this.bookListText.setText("* Select a customer first.");
+        } else{
+            User user = this.userListView.getSelectionModel().getSelectedItem();
+            List<Book> books = new ArrayList<>(user.getloanedBooks().getBooks());
+            if (books.isEmpty()){
+                this.bookListText.setText("* Customer has no loaned books.");
+            } else{
+                this.bookListText.setText(books.toString());
+            }
+        }
     }
 /*
     @FXML

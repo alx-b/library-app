@@ -44,8 +44,8 @@ public class LoginSceneController {
     }
 
     private boolean fieldsAreEmpty(){
-        return (this.usernameField.getText().equals("") ||
-                this.passwordField.getText().equals(""));
+        return (this.usernameField.getText().isBlank() ||
+                this.passwordField.getText().isBlank());
     }
 
     @FXML
