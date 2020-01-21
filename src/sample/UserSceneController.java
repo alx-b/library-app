@@ -59,20 +59,27 @@ public class UserSceneController {
 
     @FXML
     protected void searchBookByTitle(){
-        List<Book> books = this.app.searchBookByTitle(this.byTitleField.getText());
         this.libraryListView.getItems().clear();
-        for (Book book : books){
-            this.libraryListView.getItems().add(book);
+        if (this.byTitleField.getText().isEmpty()){
+            System.out.println("Enter something first.");
+        } else {
+            List<Book> books = this.app.searchBookByTitle(this.byTitleField.getText());
+            for (Book book : books){
+                this.libraryListView.getItems().add(book);
+            }
         }
     }
 
-
     @FXML
     protected void searchBookByAuthor(){
-        List<Book> books = this.app.searchBookByAuthor(this.byAuthorField.getText());
         this.libraryListView.getItems().clear();
-        for (Book book : books){
-            this.libraryListView.getItems().add(book);
+        if (this.byAuthorField.getText().isEmpty()){
+            System.out.println("Enter something first.");
+        } else {
+            List<Book> books = this.app.searchBookByAuthor(this.byAuthorField.getText());
+            for (Book book : books){
+                this.libraryListView.getItems().add(book);
+            }
         }
     }
 

@@ -75,12 +75,15 @@ public class AdminSceneController {
 
     @FXML
     protected void searchUserByName(){
-        List<User> users = this.app.searchUserByName(this.byNameField.getText());
         this.userListView.getItems().clear();
-        for (User user : users){
-            this.userListView.getItems().add(user);
+        if (this.byNameField.getText().isEmpty()){
+            System.out.println("Enter something");
+        } else {
+            List<User> users = this.app.searchUserByName(this.byNameField.getText());
+            for (User user : users){
+                this.userListView.getItems().add(user);
+            }
         }
-
     }
 
     @FXML
