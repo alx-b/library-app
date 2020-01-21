@@ -11,6 +11,8 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ScrollPane?>
 <GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <TabPane GridPane.hgrow="ALWAYS"
              GridPane.vgrow="ALWAYS"
@@ -30,6 +32,9 @@
                     <Button text="Display Library Books"
                             onAction="#displayBooks"
                     />
+                    <Button text="Display only available books"
+                            onAction="#displayOnlyAvailableBooks"
+                    />
                     <Button text="Loan selected book"
                             onAction="#loanSelectedBook"
                     />
@@ -45,6 +50,9 @@
                     <Button text="Search by author"
                             onAction="#searchBookByAuthor"/>
                 </VBox>
+                <ScrollPane GridPane.rowIndex="1" GridPane.columnIndex="1" fitToWidth="true">
+                    <Text fx:id="libraryBookDetailText" wrappingWidth="160"/>
+                </ScrollPane>
             </GridPane>
         </Tab>
         <Tab fx:id="loanedBookTab"
@@ -67,6 +75,9 @@
                     <Button text="Return selected book"
                             onAction="#returnSelectedBook"/>
                 </VBox>
+                <ScrollPane GridPane.rowIndex="1" GridPane.columnIndex="1" fitToWidth="true">
+                    <Text fx:id="loanedBookDetailText" wrappingWidth="160"/>
+                </ScrollPane>
             </GridPane>
         </Tab>
     </TabPane>

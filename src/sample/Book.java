@@ -36,9 +36,9 @@ public class Book implements Serializable {
 
     public String displayFullInfo(){
         return "Title: " + title +
-               "\nAuthor: " + author +
-               "\nDescription: " + description +
-               "\nIs Available: " + isAvailable + "\n";
+               "\n\nAuthor: " + author +
+               "\n\nIs Available: " + isAvailable +
+               "\n\nDescription: " + description + "\n";
     }
 
     @Override
