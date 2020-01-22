@@ -1,0 +1,37 @@
+.root {
+    -fx-background-color: "#424242";
+}
+
+.label {
+    -fx-text-fill: "#eeeeee";
+    -fx-font-size: 20;
+}
+
+.button {
+    -fx-background-color: "#00897b";
+    -fx-text-fill: "#eeeeee";
+}
+
+.button:hover{
+    -fx-background-color: "#26A69A";
+}
+
+.button:focused{
+    -fx-background-color: "#26A69A";
+}
+
+.text-field{
+    -fx-background-color: "#424242";
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: "#00897b";
+    -fx-text-fill: "#eeeeee";
+    -fx-font-size: 16;
+}
+
+.text-field:focused{
+    -fx-border-color: "#26A69A";
+}
+
+.info-text{
+    -fx-fill: "#eeeeee";
+}

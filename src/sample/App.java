@@ -59,4 +59,12 @@ public class App {
     public boolean adminListContainsUserWithUsername(String username){
         return this.adminList.listContainsAdminWithUsername(username);
     }
+
+    public void addBookToLibrary(Book book){
+        this.libraryBooks.addBook(book);
+    }
+
+    public void removeBookFromLibrary(Book book){
+        this.libraryBooks.removeBook(book);
+    }
 }

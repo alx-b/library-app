@@ -11,35 +11,34 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class AccountCreationSceneController {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private TextField nameField;
     @FXML private Text infoText;
-    //@FXML private TextField personNumberField;
     private App app;
 
     public AccountCreationSceneController(App app) {
         this.app = app;
     }
-    // DO NOT FORGET TO CHECK BOTH ADMINLIST AND USERLIST IF A USERNAME EXIST!!!!!
 
-    private boolean fieldsAreEmpty(){
+    private boolean fieldsAreBlank(){
         return (this.usernameField.getText().isBlank() ||
                 this.passwordField.getText().isBlank() ||
                 this.nameField.getText().isBlank());
     }
 
     @FXML
-    public void createAndAddAccount(){
-        System.out.println("createAndAddAccount");
-        if (!fieldsAreEmpty()){
+    protected void createAndAddAccount(){
+        if (!fieldsAreBlank()){
             if (this.app.usernameIsUnique(this.usernameField.getText())){
                 this.app.getUserList().addUser(
-                        new User(usernameField.getText(), passwordField.getText(), nameField.getText())
+                        new User(
+                                this.usernameField.getText(),
+                                this.passwordField.getText(),
+                                this.nameField.getText()
+                        )
                 );
                 FileUtility.saveObject("user_list.ser", this.app.getUserList());
             } else{
@@ -52,8 +51,7 @@ public class AccountCreationSceneController {
     }
 
     @FXML
-    public void launchMainScene(ActionEvent actionEvent) throws IOException {
-        System.out.println("AccountScene, launchMainScene");
+    protected void launchMainScene(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/login-scene.fxml"));
         loader.setController(new LoginSceneController(this.app));
         Parent view = loader.load();

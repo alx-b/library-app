@@ -7,14 +7,29 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <Label text="Username" GridPane.rowIndex="0"/>
-    <TextField fx:id="usernameField" GridPane.rowIndex="1"/>
-    <Label text="Password" GridPane.rowIndex="2"/>
-    <PasswordField fx:id="passwordField" GridPane.rowIndex="3"/>
-    <Text fx:id="infoText" GridPane.rowIndex="4"/>
-    <HBox GridPane.rowIndex="5" spacing="20">
-        <Button text="Log in" onAction="#logIn"/>
-        <Button text="New account" onAction="#launchCreateAccountScene"/>
-    </HBox>
+<?import java.net.URL?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" gridLinesVisible="false">
+    <Label text="Username"
+           GridPane.rowIndex="0"/>
+    <TextField fx:id="usernameField"
+               prefWidth="300"
+               GridPane.rowIndex="1"/>
+    <Label text="Password"
+           GridPane.rowIndex="2"/>
+    <PasswordField fx:id="passwordField"
+                   GridPane.rowIndex="3"/>
+    <Text styleClass="info-text" fx:id="infoText"
+          GridPane.rowIndex="4"/>
+    <Button text="Log in" maxWidth="Infinity"
+            GridPane.rowIndex="5"
+            onAction="#logIn"/>
+    <Button text="New account"
+            GridPane.halignment="RIGHT"
+            GridPane.rowIndex="6"
+            onAction="#launchCreateAccountScene"/>
+    <stylesheets>
+        <URL value="@../css/login-style.css"/>
+    </stylesheets>
 </GridPane>

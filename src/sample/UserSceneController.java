@@ -32,11 +32,11 @@ public class UserSceneController {
     }
 
     private boolean loanedBookSelectionIsEmpty(){
-        return loanedBookListView.getSelectionModel().isEmpty();
+        return this.loanedBookListView.getSelectionModel().isEmpty();
     }
 
     private boolean libraryBookSelectionIsEmpty(){
-        return libraryListView.getSelectionModel().isEmpty();
+        return this.libraryListView.getSelectionModel().isEmpty();
     }
 
     @FXML
@@ -93,32 +93,33 @@ public class UserSceneController {
     }
 
     @FXML
-    public void readMoreAboutSelectedBook(){
+    protected void readMoreAboutSelectedBook(){
         if (libraryBookSelectionIsEmpty()) {
             System.out.println("you haven't select a book.");
         } else {
             Book book = getSelectedBook();
-            libraryBookDetailText.setText(book.displayFullInfo());
+            this.libraryBookDetailText.setText(book.displayFullInfo());
         }
     }
 
     @FXML
-    public void readMoreAboutSelectedLoanedBook(){
+    protected void readMoreAboutSelectedLoanedBook(){
         if (loanedBookSelectionIsEmpty()){
             System.out.println("you haven't select a book.");
         } else {
             Book book = getSelectedLoanedBook();
             //System.out.println(book.displayFullInfo());
-            loanedBookDetailText.setText(book.displayFullInfo());
+            this.loanedBookDetailText.setText(book.displayFullInfo());
         }
     }
 
-    public void returnSelectedBook(){
+    @FXML
+    protected void returnSelectedBook(){
         System.out.println("return book");
         if (loanedBookSelectionIsEmpty()){
             System.out.println("you haven't select a book to return.");
         } else{
-            int index = this.app.getLibraryBooks().getIndexOf(loanedBookListView.getSelectionModel().getSelectedItem());
+            int index = this.app.getLibraryBooks().getIndexOf(this.loanedBookListView.getSelectionModel().getSelectedItem());
             this.app.getLibraryBooks().getBooks().get(index).markAsAvailable();
             this.app.removeBookFromUserLoanedBookList(getSelectedLoanedBook());
             FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
@@ -128,7 +129,8 @@ public class UserSceneController {
         displayBooks();
     }
 
-    @FXML void loanSelectedBook(ActionEvent actionEvent){
+    @FXML
+    protected void loanSelectedBook(ActionEvent actionEvent){
         if (!libraryBookSelectionIsEmpty() && getSelectedBook().isAvailable()){
             System.out.println("Loan book");
             this.app.addBookToUserLoanedBookList(getSelectedBook());

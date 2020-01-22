@@ -2,15 +2,12 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class AdminSceneController {
     @FXML private ListView<Book> libraryListView;
@@ -27,10 +24,10 @@ public class AdminSceneController {
         this.app = app;
     }
 
-    private boolean fieldsAreEmpty(){
-        return (titleField.getText().isBlank() ||
-                authorField.getText().isBlank() ||
-                descriptionArea.getText().isBlank());
+    private boolean fieldsAreBlank(){
+        return (this.titleField.getText().isBlank() ||
+                this.authorField.getText().isBlank() ||
+                this.descriptionArea.getText().isBlank());
     }
 
     private void clearFields(){
@@ -64,10 +61,10 @@ public class AdminSceneController {
 
     @FXML
     protected void addNewBook(){
-        if (fieldsAreEmpty()){
-            System.out.println("Fields are empty/blank.");
+        if (fieldsAreBlank()){
+            System.out.println("Fill in all fields.");
         } else {
-            this.app.getLibraryBooks().addBook(new Book(this.titleField.getText(), this.authorField.getText(), this.descriptionArea.getText()));
+            this.app.addBookToLibrary(new Book(this.titleField.getText(), this.authorField.getText(), this.descriptionArea.getText()));
             clearFields();
             FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
             displayBooks();
@@ -79,7 +76,7 @@ public class AdminSceneController {
         if (this.libraryListView.getSelectionModel().isEmpty()){
             System.out.println("Select a book to remove.");
         } else {
-            this.app.getLibraryBooks().removeBook(getSelectedBook());
+            this.app.removeBookFromLibrary(getSelectedBook());
             FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
             displayBooks();
         }
@@ -96,7 +93,7 @@ public class AdminSceneController {
     @FXML
     protected void searchUserByName(){
         this.userListView.getItems().clear();
-        if (this.byNameField.getText().isEmpty()){
+        if (this.byNameField.getText().isBlank()){
             System.out.println("Enter something");
         } else {
             List<User> users = this.app.searchUserByName(this.byNameField.getText());
