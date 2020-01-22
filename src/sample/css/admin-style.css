@@ -1,0 +1,71 @@
+.root {
+    -fx-background-color: "#424242";
+}
+
+.tab-header-background{
+    -fx-background-color: "#424242";
+}
+
+.tab{
+    -fx-background-color: "#424242";
+    -fx-text-base-color: "#eeeeee";
+    -fx-focus-color: "#eeeeee00";
+}
+
+.tab:hover{
+    -fx-border-width: 0 0 4 0;
+    -fx-border-color: "#26a69a";
+}
+
+.tab:selected{
+    -fx-border-width: 0 0 4 0;
+    -fx-border-color: "#00897b";
+}
+
+.label {
+    -fx-text-fill: "#eeeeee";
+    -fx-font-size: 20;
+}
+
+.list-view{
+    -fx-background-color: "#616161";
+}
+
+.list-cell{
+    -fx-background-color: "#616161";
+    -fx-text-fill: "#eeeeee";
+}
+
+.list-cell:filled:hover{
+    -fx-background-color: "#26a69a";
+}
+
+.list-cell:filled:selected{
+    -fx-background-color: "#00897b";
+}
+
+.button {
+    -fx-background-color: "#00897b";
+    -fx-text-fill: "#eeeeee";
+}
+
+.button:hover{
+    -fx-background-color: "#26a69a";
+}
+
+.button:focused{
+    -fx-background-color: "#26a69a";
+}
+
+.text-field{
+    -fx-background-color: "#424242";
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: "#00897b";
+    -fx-text-fill: "#eeeeee";
+    -fx-font-size: 16;
+}
+
+.text-field:focused{
+    -fx-border-color: "#26a69a";
+}
+

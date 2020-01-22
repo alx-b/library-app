@@ -13,29 +13,36 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.TextArea?>
-<GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <TabPane GridPane.hgrow="ALWAYS"
-             GridPane.vgrow="ALWAYS"
+<?import java.net.URL?>
+<GridPane xmlns:fx="http://javafx.com/fxml" alignment="center">
+    <TabPane GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" tabMinWidth="140"
     >
         <Tab fx:id="libraryTab"
              text="Library"
              closable="false"
         >
-            <GridPane alignment="CENTER">
+            <GridPane alignment="CENTER" vgap="10" hgap="10">
                 <ListView fx:id="libraryListView"
-                          GridPane.columnIndex="0"
+                          GridPane.columnIndex="0" GridPane.rowIndex="0"
+                          GridPane.rowSpan="3"
+                          GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
                 />
-                <VBox GridPane.columnIndex="1">
-                    <Button text="Display Library Books"
-                            onAction="#displayBooks"
-                    />
-                    <Button text="Remove Book"
-                            onAction="#removeSelectedBook"
-                    />
-                    <Button text="See loaned books"
-                            onAction="#displayLoanedBooks"
-                    />
-                </VBox>
+                <Button text="Display Library Books"
+                        GridPane.columnIndex="1" GridPane.rowIndex="0"
+                        maxWidth="Infinity"
+                        onAction="#displayBooks"
+                />
+                <Button text="See loaned books"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1"
+                        maxWidth="Infinity"
+                        onAction="#displayLoanedBooks"
+                />
+                <Button text="Remove Book"
+                        GridPane.columnIndex="1" GridPane.rowIndex="2"
+                        GridPane.valignment="TOP"
+                        maxWidth="Infinity"
+                        onAction="#removeSelectedBook"
+                />
             </GridPane>
         </Tab>
         <Tab fx:id="addBookToLibrary"
@@ -104,4 +111,7 @@
             </GridPane>
         </Tab>
     </TabPane>
+    <stylesheets>
+        <URL value="@../css/admin-style.css"/>
+    </stylesheets>
 </GridPane>
