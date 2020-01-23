@@ -3,6 +3,7 @@ package sample;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -45,6 +46,19 @@ public class BookList implements Serializable {
             }
         }
         return booksByAuthor;
+    }
+
+    public void sortByTitle(){
+        this.books.sort(Comparator.comparing(Book::getTitle));
+    }
+
+
+    public void sortByAuthor(){
+        this.books.sort(Comparator.comparing(Book::getAuthor));
+    }
+
+    public void shuffleBook(){
+        Collections.shuffle(this.books);
     }
 
     @Override

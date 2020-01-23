@@ -49,6 +49,9 @@
                     <TextField fx:id="byAuthorField"/>
                     <Button text="Search by author"
                             onAction="#searchBookByAuthor"/>
+                    <Button text="Sort by Title" onAction="#sortLibraryBookByTitle"/>
+                    <Button text="Sort by Author" onAction="#sortLibraryBookByAuthor"/>
+                    <Button text="Randomize" onAction="#shuffleLibraryBook"/>
                 </VBox>
                 <ScrollPane GridPane.rowIndex="1" GridPane.columnIndex="1" fitToWidth="true">
                     <Text fx:id="libraryBookDetailText" wrappingWidth="160"/>

@@ -48,6 +48,24 @@ public class UserSceneController {
     }
 
     @FXML
+    protected void sortLibraryBookByTitle(){
+        this.app.sortLibraryBookByTitle();
+        displayBooks();
+    }
+
+    @FXML
+    protected void sortLibraryBookByAuthor(){
+        this.app.sortLibraryBookByAuthor();
+        displayBooks();
+    }
+
+    @FXML
+    protected void shuffleLibraryBook(){
+        this.app.shuffleLibraryBook();
+        displayBooks();
+    }
+
+    @FXML
     protected void displayOnlyAvailableBooks(){
         this.libraryListView.getItems().clear();
         for (Book book : this.app.getLibraryBooks().getBooks()){

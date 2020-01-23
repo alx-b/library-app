@@ -54,6 +54,18 @@ public class App {
         return (!userListContainsUserWithUsername(username) && !adminListContainsUserWithUsername(username));
     }
 
+    public void sortLibraryBookByTitle(){
+        this.libraryBooks.sortByTitle();
+    }
+
+    public void sortLibraryBookByAuthor(){
+        this.libraryBooks.sortByAuthor();
+    }
+
+    public void shuffleLibraryBook(){
+        this.libraryBooks.shuffleBook();
+    }
+
     public boolean userListContainsUserWithUsername(String username){
         return this.userList.listContainsUserWithUsername(username);
     }
