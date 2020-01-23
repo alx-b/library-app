@@ -1,7 +1,5 @@
 package sample;
 
-import java.io.Serializable;
-
 public class User extends Person {
     private BookList loanedBooks = new BookList();
 

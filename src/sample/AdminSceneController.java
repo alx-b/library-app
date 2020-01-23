@@ -17,6 +17,9 @@ public class AdminSceneController {
     @FXML private TextArea descriptionArea;
     @FXML private TextField byNameField;
     @FXML private Text bookListText;
+    @FXML private Text libraryInfoText;
+    @FXML private Text addBookInfoText;
+    @FXML private Text customerInfoText;
 
     private App app;
 
@@ -62,7 +65,7 @@ public class AdminSceneController {
     @FXML
     protected void addNewBook(){
         if (fieldsAreBlank()){
-            System.out.println("Fill in all fields.");
+            this.addBookInfoText.setText("* Fill in all fields.");
         } else {
             this.app.addBookToLibrary(new Book(this.titleField.getText(), this.authorField.getText(), this.descriptionArea.getText()));
             clearFields();
@@ -74,7 +77,7 @@ public class AdminSceneController {
     @FXML
     protected void removeSelectedBook(){
         if (this.libraryListView.getSelectionModel().isEmpty()){
-            System.out.println("Select a book to remove.");
+            this.libraryInfoText.setText("* Select a book to remove.");
         } else {
             this.app.removeBookFromLibrary(getSelectedBook());
             FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
@@ -94,8 +97,9 @@ public class AdminSceneController {
     protected void searchUserByName(){
         this.userListView.getItems().clear();
         if (this.byNameField.getText().isBlank()){
-            System.out.println("Enter something");
+            this.customerInfoText.setText("* Fill in field first.");
         } else {
+            this.customerInfoText.setText("");
             List<User> users = this.app.searchUserByName(this.byNameField.getText());
             for (User user : users){
                 this.userListView.getItems().add(user);
@@ -107,7 +111,7 @@ public class AdminSceneController {
     protected void displaySelectedUserLoanBookList(){
         this.bookListText.setText("");
         if (this.userListView.getSelectionModel().isEmpty()){
-            this.bookListText.setText("* Select a customer first.");
+            this.customerInfoText.setText("* Select a customer first.");
         } else{
             User user = this.userListView.getSelectionModel().getSelectedItem();
             List<Book> books = new ArrayList<>(user.getloanedBooks().getBooks());
@@ -115,6 +119,7 @@ public class AdminSceneController {
                 this.bookListText.setText("* Customer has no loaned books.");
             } else{
                 this.bookListText.setText(books.toString());
+                customerInfoText.setText("");
             }
         }
     }

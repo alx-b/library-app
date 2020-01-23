@@ -24,7 +24,18 @@
 
 .label {
     -fx-text-fill: "#eeeeee";
-    -fx-font-size: 20;
+    -fx-font-size: 16;
+}
+
+.text-area {
+    -fx-text-fill: "#eeeeee";
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: "#00897b";
+    -fx-background-color: "#616161";
+}
+
+.text-area .content {
+    -fx-background-color: "#616161";
 }
 
 .list-view{
@@ -62,10 +73,13 @@
     -fx-border-width: 0 0 2 0;
     -fx-border-color: "#00897b";
     -fx-text-fill: "#eeeeee";
-    -fx-font-size: 16;
+    -fx-font-size: 12;
 }
 
 .text-field:focused{
     -fx-border-color: "#26a69a";
 }
 
+.info-text{
+    -fx-fill: "#eeeeee";
+}

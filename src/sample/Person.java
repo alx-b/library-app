@@ -6,13 +6,11 @@ public abstract class Person implements Serializable {
     private String username;
     private String password;
     private String name;
-    //private String personNumber;
 
     public Person(String username, String password, String name) {
         this.username = username;
         this.password = password;
         this.name = name;
-        //this.personNumber = personNumber;
     }
 
     public String getUsername(){
@@ -25,8 +23,8 @@ public abstract class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Username: " + username +
-               "\nPassword: " + password +
-               "\nName: " + name + "\n";
+        return "Username: " + this.username +
+               "\nPassword: " + this.password +
+               "\nName: " + this.name + "\n";
     }
 }

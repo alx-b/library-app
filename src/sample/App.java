@@ -10,6 +10,7 @@ public class App {
     private User currentUser;
     private Admin currentAdmin;
 
+
     public App(){
         if (new File("library_book.ser").isFile()){
             System.out.println("loading library_book");
@@ -19,7 +20,8 @@ public class App {
             System.out.println("loading user_list");
             this.userList = (UserList) FileUtility.loadObject("user_list.ser");
         }
-        adminList.addAdmin(new Admin("admin", "1234", "Barry"));
+        // Serialize later
+        adminList.addAdmin(new Admin("admin", "1234", "Alex"));
     }
 
     public BookList getLibraryBooks(){ return this.libraryBooks; }

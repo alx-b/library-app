@@ -23,7 +23,7 @@ public class Book implements Serializable {
     }
 
     public boolean isAvailable(){
-        return isAvailable;
+        return this.isAvailable;
     }
 
     public void markAsUnavailable(){
@@ -35,10 +35,10 @@ public class Book implements Serializable {
     }
 
     public String displayFullInfo(){
-        return "Title: " + title +
-               "\n\nAuthor: " + author +
-               "\n\nIs Available: " + isAvailable +
-               "\n\nDescription: " + description + "\n";
+        return "Title: " + this.title +
+               "\n\nAuthor: " + this.author +
+               "\n\nIs Available: " + this.isAvailable +
+               "\n\nDescription: " + this.description + "\n";
     }
 
     @Override

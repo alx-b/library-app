@@ -2,6 +2,7 @@ package sample;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -28,11 +29,6 @@ public class BookList implements Serializable {
         List<Book> booksByTitle = new ArrayList<>();
         String regexPattern = Pattern.compile(".*" + title + ".*").pattern();
         for (Book book : this.books){
-            /*
-            if (book.getTitle().toLowerCase().equals(title.toLowerCase())){
-                booksByTitle.add(book);
-            }
-            */
             if (book.getTitle().toLowerCase().matches(regexPattern.toLowerCase())){
                 booksByTitle.add(book);
             }
@@ -44,11 +40,6 @@ public class BookList implements Serializable {
         List<Book> booksByAuthor = new ArrayList<>();
         String regexPattern = Pattern.compile(".*" + author + ".*").pattern();
         for (Book book : this.books){
-            /*
-            if (book.getAuthor().toLowerCase().equals(author.toLowerCase())){
-                booksByAuthor.add(book);
-            }
-            */
             if (book.getAuthor().toLowerCase().matches(regexPattern.toLowerCase())){
                 booksByAuthor.add(book);
             }
@@ -58,6 +49,6 @@ public class BookList implements Serializable {
 
     @Override
     public String toString() {
-        return books + "\n";
+        return this.books + "\n";
     }
 }

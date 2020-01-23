@@ -47,6 +47,6 @@ public class UserList implements Serializable {
 
     @Override
     public String toString() {
-        return users + "\n";
+        return this.users + "\n";
     }
 }

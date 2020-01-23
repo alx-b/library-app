@@ -17,6 +17,7 @@
 <GridPane xmlns:fx="http://javafx.com/fxml" alignment="center">
     <TabPane GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" tabMinWidth="140"
     >
+        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
         <Tab fx:id="libraryTab"
              text="Library"
              closable="false"
@@ -24,7 +25,7 @@
             <GridPane alignment="CENTER" vgap="10" hgap="10">
                 <ListView fx:id="libraryListView"
                           GridPane.columnIndex="0" GridPane.rowIndex="0"
-                          GridPane.rowSpan="3"
+                          GridPane.rowSpan="4"
                           GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
                 />
                 <Button text="Display Library Books"
@@ -43,43 +44,50 @@
                         maxWidth="Infinity"
                         onAction="#removeSelectedBook"
                 />
+                <Text fx:id="libraryInfoText" styleClass="info-text"
+                      GridPane.columnIndex="1" GridPane.rowIndex="3"
+                      GridPane.valignment="TOP"
+                />
             </GridPane>
         </Tab>
         <Tab fx:id="addBookToLibrary"
              text="Add book to library"
              closable="false"
         >
-            <GridPane alignment="CENTER">
+            <GridPane alignment="CENTER" vgap="10" hgap="10">
                 <Label text="Title"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="0"
                 />
-                <Label text="Author"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="1"
+                <TextField fx:id="titleField"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="1"
                 />
-                <Label text="Description"
+                <Label text="Author"
                        GridPane.columnIndex="0"
                        GridPane.rowIndex="2"
                 />
-                <TextField fx:id="titleField"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="0"
-                />
                 <TextField fx:id="authorField"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="1"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="3"
+                />
+                <Label text="Description"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="4"
                 />
                 <TextArea fx:id="descriptionArea"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="2"
+                          GridPane.columnIndex="0"
+                          GridPane.rowIndex="5"
                           GridPane.columnSpan="1"
                           GridPane.rowSpan="6"
                           prefColumnCount="1"
                 />
+                <Text styleClass="info-text" fx:id="addBookInfoText"
+                      GridPane.columnIndex="0" GridPane.rowIndex="12"/>
                 <Button text="Add Book"
-                        GridPane.columnIndex="1"
-                        GridPane.rowIndex="10"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="13"
+                        maxWidth="Infinity"
                         onAction="#addNewBook"
                 />
             </GridPane>
@@ -88,26 +96,40 @@
              text="Customer"
              closable="false"
         >
-            <GridPane alignment="CENTER">
+            <GridPane alignment="CENTER" vgap="10" hgap="10">
                 <ListView fx:id="userListView"
-                          GridPane.columnIndex="0"
+                          GridPane.columnIndex="0" GridPane.rowSpan="6"
+                          GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS"
                 />
-                <VBox GridPane.columnIndex="1">
-                    <Button text="Display Customers"
-                            onAction="#displayUsers"
-                    />
-                    <Label text="Search by name"
-                    />
-                    <TextField fx:id="byNameField"
-                    />
-                    <Button text="Search by name"
-                            onAction="#searchUserByName"
-                    />
-                    <Button text="See Selected User Loaned Books"
-                            onAction="#displaySelectedUserLoanBookList"/>
-                    <Text fx:id="bookListText"
-                          text=""/>
-                </VBox>
+                <Button text="Display Customers"
+                        GridPane.columnIndex="1" GridPane.rowIndex="0"
+                        maxWidth="Infinity"
+                        onAction="#displayUsers"
+                />
+                <Button text="Selected User Loaned Books"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1"
+                        maxWidth="Infinity"
+                        onAction="#displaySelectedUserLoanBookList"/>
+                <Label text="Search"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2"
+                />
+                <TextField fx:id="byNameField"
+                           GridPane.columnIndex="1" GridPane.rowIndex="3"
+                />
+                <Button text="Search by name"
+                        GridPane.columnIndex="1" GridPane.rowIndex="4"
+                        maxWidth="Infinity"
+                        onAction="#searchUserByName"
+                />
+                <Text fx:id="customerInfoText" styleClass="info-text"
+                      GridPane.columnIndex="1"
+                      GridPane.rowIndex="5"
+                      GridPane.valignment="TOP"
+                />
+                <Text fx:id="bookListText" styleClass="info-text"
+                      GridPane.columnIndex="0"
+                      GridPane.rowIndex="7"
+                />
             </GridPane>
         </Tab>
     </TabPane>
