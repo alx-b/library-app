@@ -10,10 +10,11 @@ import java.util.List;
 public class UserSceneController {
     @FXML private ListView<Book> libraryListView;
     @FXML private ListView<Book> loanedBookListView;
-    @FXML private TextField byTitleField;
-    @FXML private TextField byAuthorField;
+    @FXML private TextField searchField;
     @FXML private Text libraryBookDetailText;
     @FXML private Text loanedBookDetailText;
+    @FXML private Text libraryInfoText;
+    @FXML private Text loanBookInfoText;
 
     private App app;
 
@@ -40,8 +41,9 @@ public class UserSceneController {
     }
 
     @FXML
-    protected void displayBooks(){
+    private void displayBooks(){
         this.libraryListView.getItems().clear();
+        this.libraryInfoText.setText("");
         for (Book book : this.app.getLibraryBooks().getBooks()){
             this.libraryListView.getItems().add(book);
         }
@@ -78,10 +80,11 @@ public class UserSceneController {
     @FXML
     protected void searchBookByTitle(){
         this.libraryListView.getItems().clear();
-        if (this.byTitleField.getText().isEmpty()){
-            System.out.println("Enter something first.");
+        if (this.searchField.getText().isBlank()){
+            this.libraryInfoText.setText("* Fill in search field first.");
         } else {
-            List<Book> books = this.app.searchBookByTitle(this.byTitleField.getText());
+            this.libraryInfoText.setText("");
+            List<Book> books = this.app.searchBookByTitle(this.searchField.getText());
             for (Book book : books){
                 this.libraryListView.getItems().add(book);
             }
@@ -91,10 +94,11 @@ public class UserSceneController {
     @FXML
     protected void searchBookByAuthor(){
         this.libraryListView.getItems().clear();
-        if (this.byAuthorField.getText().isEmpty()){
-            System.out.println("Enter something first.");
+        if (this.searchField.getText().isBlank()){
+            this.libraryInfoText.setText("* Fill in search field first.");
         } else {
-            List<Book> books = this.app.searchBookByAuthor(this.byAuthorField.getText());
+            this.libraryInfoText.setText("");
+            List<Book> books = this.app.searchBookByAuthor(this.searchField.getText());
             for (Book book : books){
                 this.libraryListView.getItems().add(book);
             }
@@ -105,6 +109,7 @@ public class UserSceneController {
     @FXML
     protected void displayLoanedBooks(){
         this.loanedBookListView.getItems().clear();
+        this.loanBookInfoText.setText("");
         for (Book book : this.app.getCurrentUser().getloanedBooks().getBooks()){
             this.loanedBookListView.getItems().add(book);
         }
@@ -113,9 +118,10 @@ public class UserSceneController {
     @FXML
     protected void readMoreAboutSelectedBook(){
         if (libraryBookSelectionIsEmpty()) {
-            System.out.println("you haven't select a book.");
+            this.libraryInfoText.setText("* Select a book first.");
         } else {
             Book book = getSelectedBook();
+            this.libraryInfoText.setText("");
             this.libraryBookDetailText.setText(book.displayFullInfo());
         }
     }
@@ -123,47 +129,42 @@ public class UserSceneController {
     @FXML
     protected void readMoreAboutSelectedLoanedBook(){
         if (loanedBookSelectionIsEmpty()){
-            System.out.println("you haven't select a book.");
+            this.loanBookInfoText.setText("* Select a book first.");
         } else {
             Book book = getSelectedLoanedBook();
-            //System.out.println(book.displayFullInfo());
+            this.loanBookInfoText.setText("");
             this.loanedBookDetailText.setText(book.displayFullInfo());
         }
     }
 
     @FXML
     protected void returnSelectedBook(){
-        System.out.println("return book");
         if (loanedBookSelectionIsEmpty()){
-            System.out.println("you haven't select a book to return.");
+            this.loanBookInfoText.setText("* Select a book first.");
         } else{
             int index = this.app.getLibraryBooks().getIndexOf(this.loanedBookListView.getSelectionModel().getSelectedItem());
             this.app.getLibraryBooks().getBooks().get(index).markAsAvailable();
             this.app.removeBookFromUserLoanedBookList(getSelectedLoanedBook());
             FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
             FileUtility.saveObject("user_list.ser", this.app.getUserList());
+            displayLoanedBooks();
+            displayBooks();
         }
-        displayLoanedBooks();
-        displayBooks();
     }
 
     @FXML
     protected void loanSelectedBook(ActionEvent actionEvent){
-        if (!libraryBookSelectionIsEmpty() && getSelectedBook().isAvailable()){
-            System.out.println("Loan book");
+        if (libraryBookSelectionIsEmpty()){
+            this.libraryInfoText.setText("* Select a book first.");
+        }
+        else if (getSelectedBook().isAvailable()){
             this.app.addBookToUserLoanedBookList(getSelectedBook());
             FileUtility.saveObject("library_book.ser", this.app.getLibraryBooks());
             FileUtility.saveObject("user_list.ser", this.app.getUserList());
+            displayLoanedBooks();
+            displayBooks();
         } else{
-            System.out.println("can't loan book");
+            this.libraryInfoText.setText("* Selected book is unavailable.");
         }
-        displayLoanedBooks();
-        displayBooks();
     }
-/*
-    @FXML
-    public void initialize(URL url, ResourceBundle rb){
-        System.out.println("hello");
-    }
-*/
 }

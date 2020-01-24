@@ -94,12 +94,4 @@ public class LoginSceneController {
         window.setScene(scene);
         window.show();
     }
-
-/*
-    @FXML
-    public void initialize(URL url, ResourceBundle rb){
-        System.out.println("hello");
-    }
-
-*/
 }

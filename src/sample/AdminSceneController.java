@@ -118,15 +118,10 @@ public class AdminSceneController {
             if (books.isEmpty()){
                 this.bookListText.setText("* Customer has no loaned books.");
             } else{
-                this.bookListText.setText(books.toString());
+                String info = books.toString().replace(", ", "");
+                this.bookListText.setText(info.substring(1, info.length()-2));
                 customerInfoText.setText("");
             }
         }
     }
-/*
-    @FXML
-    public void initialize(URL url, ResourceBundle rb){
-        System.out.println("hello");
-    }
-*/
 }

@@ -13,48 +13,74 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.ScrollPane?>
+<?import java.net.URL?>
 <GridPane xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <TabPane GridPane.hgrow="ALWAYS"
              GridPane.vgrow="ALWAYS"
     >
+        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
         <Tab fx:id="libraryTab"
              text="Library"
              closable="false"
         >
-            <GridPane alignment="CENTER">
-                <VBox GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.columnIndex="0">
-                    <ListView fx:id="libraryListView"
-                              GridPane.columnIndex="0"
-                    />
-                              <!-- prefHeight="1" -->
-                </VBox>
-                <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" spacing="8">
-                    <Button text="Display Library Books"
-                            onAction="#displayBooks"
-                    />
-                    <Button text="Display only available books"
-                            onAction="#displayOnlyAvailableBooks"
-                    />
-                    <Button text="Loan selected book"
-                            onAction="#loanSelectedBook"
-                    />
-                    <Button text="Read more about selected book"
-                            onAction="#readMoreAboutSelectedBook"
-                    />
-                    <Label text="Search by Title"/>
-                    <TextField fx:id="byTitleField"/>
-                    <Button text="Search by title"
-                            onAction="#searchBookByTitle"/>
-                    <Label text="Search by Author"/>
-                    <TextField fx:id="byAuthorField"/>
-                    <Button text="Search by author"
-                            onAction="#searchBookByAuthor"/>
-                    <Button text="Sort by Title" onAction="#sortLibraryBookByTitle"/>
-                    <Button text="Sort by Author" onAction="#sortLibraryBookByAuthor"/>
-                    <Button text="Randomize" onAction="#shuffleLibraryBook"/>
-                </VBox>
-                <ScrollPane GridPane.rowIndex="1" GridPane.columnIndex="1" fitToWidth="true">
-                    <Text fx:id="libraryBookDetailText" wrappingWidth="160"/>
+            <GridPane alignment="CENTER" hgap="10" vgap="10">
+                <ListView fx:id="libraryListView"
+                          GridPane.columnIndex="0" GridPane.rowIndex="0"
+                          GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS"
+                          GridPane.rowSpan="7"
+                />
+                          <!-- prefHeight="1" -->
+                <Label text="Display Library Books"
+                        GridPane.columnIndex="1" GridPane.rowIndex="0"
+                />
+                <Button text="Sort by Title"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1"
+                        maxWidth="Infinity"
+                        onAction="#sortLibraryBookByTitle"/>
+                <Button text="Sort by Author"
+                        GridPane.columnIndex="1" GridPane.rowIndex="2"
+                        maxWidth="Infinity"
+                        onAction="#sortLibraryBookByAuthor"/>
+                <Button text="Randomize"
+                        GridPane.columnIndex="1" GridPane.rowIndex="3"
+                        maxWidth="Infinity"
+                        onAction="#shuffleLibraryBook"/>
+                <Label text="Search"
+                       GridPane.columnIndex="1" GridPane.rowIndex="4"
+                />
+                <TextField fx:id="searchField"
+                           GridPane.columnIndex="1" GridPane.rowIndex="5"
+                />
+                <Button text="by title"
+                        GridPane.columnIndex="1" GridPane.rowIndex="6"
+                        GridPane.halignment="LEFT"
+                        onAction="#searchBookByTitle"/>
+                <Button text="by author"
+                        GridPane.columnIndex="1" GridPane.rowIndex="6"
+                        GridPane.halignment="RIGHT"
+                        onAction="#searchBookByAuthor"/>
+                <Text fx:id="libraryInfoText" styleClass="info-text"
+                      GridPane.columnIndex="1" GridPane.rowIndex="11"
+                />
+                <Button text="Read more about selected book"
+                        GridPane.columnIndex="1" GridPane.rowIndex="8"
+                        maxWidth="Infinity"
+                        onAction="#readMoreAboutSelectedBook"
+                />
+                <Button text="Display only available books"
+                        GridPane.columnIndex="1" GridPane.rowIndex="9"
+                        maxWidth="Infinity"
+                        onAction="#displayOnlyAvailableBooks"
+                />
+                <Button text="Loan selected book"
+                        GridPane.columnIndex="1" GridPane.rowIndex="10"
+                        maxWidth="Infinity"
+                        onAction="#loanSelectedBook"
+                />
+                <ScrollPane GridPane.rowIndex="7" GridPane.columnIndex="0"
+                            GridPane.rowSpan="5" fitToWidth="true"
+                >
+                    <Text fx:id="libraryBookDetailText" styleClass="book-detail-text" wrappingWidth="400"/>
                 </ScrollPane>
             </GridPane>
         </Tab>
@@ -62,27 +88,37 @@
              text="Loaned Books"
              closable="false"
         >
-            <GridPane alignment="CENTER">
-                <VBox GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.columnIndex="0">
-                    <ListView fx:id="loanedBookListView"
-                              GridPane.columnIndex="0"
-                    />
-                </VBox>
-                <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" spacing="8">
-                    <Button text="Display loaned books"
-                            onAction="#displayLoanedBooks"
-                    />
-                    <Button text="Read more about selected book"
-                            onAction="#readMoreAboutSelectedLoanedBook"
-                    />
-                    <Button text="Return selected book"
-                            onAction="#returnSelectedBook"/>
-                </VBox>
-                <ScrollPane GridPane.rowIndex="1" GridPane.columnIndex="1" fitToWidth="true">
-                    <Text fx:id="loanedBookDetailText" wrappingWidth="160"/>
+            <GridPane alignment="CENTER" vgap="10" hgap="10">
+                <ListView fx:id="loanedBookListView"
+                          GridPane.columnIndex="0" GridPane.rowIndex="0"
+                          GridPane.vgrow="ALWAYS" GridPane.hgrow="ALWAYS"
+                          GridPane.rowSpan="6"
+                />
+                <Button text="Display loaned books"
+                        GridPane.columnIndex="1" GridPane.rowIndex="0"
+                        maxWidth="Infinity"
+                        onAction="#displayLoanedBooks"
+                />
+                <Button text="Read more about selected book"
+                        GridPane.columnIndex="1" GridPane.rowIndex="1"
+                        maxWidth="Infinity"
+                        onAction="#readMoreAboutSelectedLoanedBook"
+                />
+                <Button text="Return selected book"
+                        GridPane.columnIndex="1" GridPane.rowIndex="2"
+                        maxWidth="Infinity"
+                        onAction="#returnSelectedBook"/>
+                <Text fx:id="loanBookInfoText" styleClass="info-text"
+                      GridPane.columnIndex="1" GridPane.rowIndex="3"
+                />
+                <ScrollPane GridPane.rowIndex="8" GridPane.columnIndex="0" GridPane.rowSpan="5" fitToWidth="true">
+                    <Text fx:id="loanedBookDetailText" styleClass="book-detail-text" wrappingWidth="400"/>
                 </ScrollPane>
             </GridPane>
         </Tab>
     </TabPane>
+    <stylesheets>
+        <URL value="@../css/user-style.css"/>
+    </stylesheets>
 </GridPane>
 

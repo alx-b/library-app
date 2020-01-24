@@ -29,6 +29,13 @@ public class AccountCreationSceneController {
                 this.nameField.getText().isBlank());
     }
 
+    private void clearAllFields(){
+        this.usernameField.clear();
+        this.passwordField.clear();
+        this.nameField.clear();
+    }
+
+    /** Create a new account, add it to userList, and save it.*/
     @FXML
     protected void createAndAddAccount(){
         if (!fieldsAreBlank()){
@@ -40,6 +47,7 @@ public class AccountCreationSceneController {
                                 this.nameField.getText()
                         )
                 );
+                clearAllFields();
                 FileUtility.saveObject("user_list.ser", this.app.getUserList());
             } else{
                 this.infoText.setText("* Username already exists.");
@@ -50,6 +58,7 @@ public class AccountCreationSceneController {
         }
     }
 
+    /** Cancel/Go back to the LogIn screen. */
     @FXML
     protected void launchMainScene(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/login-scene.fxml"));
@@ -60,10 +69,4 @@ public class AccountCreationSceneController {
         window.setScene(scene);
         window.show();
     }
-/*
-    @FXML
-    public void initialize(URL url, ResourceBundle rb){
-        System.out.println("hello");
-    }
-*/
 }
